@@ -12,6 +12,7 @@ public class Customer {
 
 	@NotBlank
 	@NotNull
+	@Pattern(regexp = "^[A-Za-z0-9]+")
 	@Size(min = 3, max = 20, message = "Your field is to short or too long")
 	private String customerName;
 
