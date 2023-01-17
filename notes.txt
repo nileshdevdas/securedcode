@@ -146,8 +146,15 @@ How to Create A signer Certificate
 		Windows --> Windows Store 
 	    Java --> Cacerts 
 		
+root123
 
+--- To Test ----
+C:\Windows\System32\drivers\etc
 
+in the host file you will need to add an entry ? 
+
+# Host file Entry
+127.0.0.1			www.demo.com 			demo
 
 
 
