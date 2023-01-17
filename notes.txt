@@ -1,0 +1,159 @@
+1.  Login to you machines : User/Password 
+2.  Spring Tool Suite  4 
+3.  Once this done we will create a Spring boot Project :- 
+4.  Create a Spring Starter Project :- 
+5.  Spring Starters (Prepacked Libaries Features That Enhance the Spring (Plugins))		
+	a)  Spring Web 
+	b)  Spring Dev Tools 
+	c)  Spring Validation
+
+-----------------------------------------------------------------------------------------
+6.  Created a new package for myself 
+		com.vinsys.security.vo
+7. 
+public class Customer {
+
+	@NotBlank
+	@NotNull
+	@Size(min = 3, max = 20, message = "Your field is to short or too long")
+	private String customerName;
+
+	@Email
+	@NotNull
+	@NotBlank
+	private String email;
+
+	@Min(0)
+	@Max(100)
+	private Long quantity;
+	++ /get/set
+
+8.  The most important part how does input validation work 
+	Write a Controller : 
+		in a package com.vinsys.secured.controllers 
+
+@RestController
+@RequestMapping(path = "/customer")
+public class CustomerController {
+
+	@PostMapping(consumes = "application/json")
+	public String createCustomer(@Valid @RequestBody Customer customer) {
+		return "Success...";
+
+	}
+}
+
+9.  Used my Postman to validate the input Validations 
+
+		
+{
+
+    "customerName" : "xxxxx", 
+    "email"  : "nilesh.devdas@vinsys.com"
+
+}
+
+*** Complex Validations are yet to be done : 
+1. File Upload and Sizes for file upload
+2. Text Area Long texts 
+3. Special Character Validation 
+
+
+Authentication and Authorization : - 
+
+Principle any system that passes username and password over the network must use 
+HTTPS 
+
+How to Secure your Application for SSL (SPring Boot) Any Service So that 
+Data Transmiteed is over Secured Layer 
+
+Encryption of the data 
+
+Lab-2
+Download the KSE 
+
+We are going to create 2 Certificates 
+	a) Signer Certificate for CA 
+	b) Identity Certificate 
+
+	changeit
+
+Should i always update my application Patches
+
+Sensitive data travelling over the networks 
+
+
+1. Start KeyStore Explorer : 
+2. Create 1 (Signer.jks) 
+	Create 2 (Identity.jks) 
+
+
+3. Create a signer certificate 
+4. Create identity Keypair 
+
+5. Create a CSR (Certificate Siging Request) 
+6. Sign The Request by the Signer 
+
+7.  Import reply back and Done i have  certificate duly signed 
+
+8.  I export Signer Certificate so people will trust me and so i use the signer certificate 
+
+
+Securing your Base : For Transmitting username and password over Secured Application: 
+
+
+#################SSL##########################
+server.ssl.key-store=classpath:identity.jks
+server.ssl.key-alias=demoidentity
+server.ssl.enabled=true
+server.ssl.key-store-password=root123
+server.ssl.key-password=root123
+#################SSL##########################
+
+driver/ect/hosts --> which allows to create static host entries 
+
+
+server.port=443
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
