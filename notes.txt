@@ -145,7 +145,27 @@ How to Create A signer Certificate
 		certificate store (TrustedStore) of the respective application 
 		Windows --> Windows Store 
 	    Java --> Cacerts 
+19.  To import your certificate (Signer Certificate) it should be imported in the (Trusted Root Cerfication) 
+		For Windows 
+		Java -> Ca Certs 
+		For  Firefox or related application its in the applicaiton store 
+
+		**** Dont Forget we are not interested in the indentity certificate we are interested in the signer 
+		being imported as we trust the signer and signer trusts the applicant hence we trust the applicant 
+		also 
 		
+	 At the end once the import is done adjust your propeties file 
+
+
+
+#################SSL##########################
+server.ssl.key-store=classpath:identity.jks (Contains the CA Certificate as well as your)
+server.ssl.key-alias=demoidentity (Alias) 
+server.ssl.enabled=true 
+server.ssl.key-store-password=root123 (password keystore) 
+server.ssl.key-password=root123 (Private key password)
+#################SSL##########################
+
 root123
 
 --- To Test ----
@@ -155,6 +175,135 @@ in the host file you will need to add an entry ?
 
 # Host file Entry
 127.0.0.1			www.demo.com 			demo
+
+
+
+
+
+
+
+
+1. CSRF : ------ 
+	Registration form : 
+	
+	Name  : dsdsd
+	Email : sdsdsd
+	Comment : Why you want to register sdsdsd
+	Submit --> 
+	
+	
+
+2. Whitelisting 
+3. Cookie and Same Site Issue 
+4. 
+
+A) if you create a form without  csrf token there is 100% gurantee that your application form 
+	will be flooded with spam with robots or nuisance 
+	
+B)  Create  a New Spring Boot Project 
+	a) Add a new package 
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import jakarta.servlet.http.HttpServletRequest;
+
+import jakarta.servlet.http.HttpServletResponse;
+
+@Controller
+public class RegistrationController {
+
+	@PostMapping(path = "/register")
+	public void registerAndSendMail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String email = request.getParameter("email");
+		String comment = request.getParameter("comment");
+		System.out.println("Sending Mail .......................");
+		PrintWriter writer = response.getWriter();
+		writer.write("Thank You For Registering");
+		writer.flush();
+	}
+}
+
+The Above controller is allowing registration : Registrations ?
+But Due to CSRF was (Cross Site Request Forgery)  Was Applied 
+the impacts were Wrong /Spammed Rgisteration / Spam Mailers / 
+Junk Data /  unecessary Paid up Services / Flooding 
+
+
+I create seperate HTML file in some another tool 
+I create Javascript 
+
+
+	<!-- CSRF --> 
+
+    <form method="post" action="http://localhost:8080/register">
+        <label>Email</label>
+        <input type="text" name="email">
+        <label>Email</label>
+        <input type="text" message="comment">
+        <input type="submit" value="Register">
+    </form>
+
+	<!-- CORS Protectio --> 
+	Cross Origin Request 
+    <script>
+        for (var i = 0; i < 10; i++) {
+            console.log(i);
+            var request = new XMLHttpRequest();
+            request.open('POST', 'http://localhost:8080/register', true);
+            request.onreadystatechange = (data) => {
+                console.log(data);
+            }
+            request.send("email=n@d.com&comment=anycomment")
+        }
+    </script>
+
+<!--- Solution for Protection Forms --> 
+CSRF --> 
+Enabled Security 
+
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+	@Bean
+	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		// decide what you wish to whitelist ?
+		//for testing Unlesss i have  alternative 
+		http.csrf().disable();
+		// for testing disable cors 
+		http.authorizeHttpRequests(
+				(r) -> r.requestMatchers("/register/**", "/login/**", "/error/**", "/", "/index.html").permitAll());
+		return http.build();
+	}
+}
+
+We also disabled the CrossOrigins 
+@CrossOrigin(origins = "*")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
