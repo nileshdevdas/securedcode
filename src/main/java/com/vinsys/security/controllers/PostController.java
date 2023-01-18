@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping(path = "/register")
+@RequestMapping(path = "/register1")
 public class PostController {
 
 	@PostMapping
@@ -16,7 +16,5 @@ public class PostController {
 		System.out.println(request.getParameter("firstname"));
 		System.out.println(request.getParameter("lastname"));
 		response.setStatus(HttpServletResponse.SC_OK);
-
 	}
-
 }

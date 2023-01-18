@@ -287,6 +287,14 @@ We also disabled the CrossOrigins
 @CrossOrigin(origins = "*")
 
 
+IFrames and 
+
+Content Security Policy : 
+
+1. Injectsion of Scripts 
+2. Injection of content 
+3. Injections of Many Things 
+
 
 
 
